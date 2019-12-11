@@ -1,11 +1,14 @@
 <template>
 <div class="col col-lg-10 border">
-  <div class="row p-3">
-    <div class="col-lg-8 border-right">
+  <div class="row p-5">
+    <div class="col-lg-7 border-right pl-2 pr-5">
         <Form></Form>     
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <Preview></Preview>
+        <div class="row justify-content-md-center">
+          <a href="#" class="btn btn-primary mt-5">SAVE APP</a>
+        </div>
     </div>
   </div>
 </div>
