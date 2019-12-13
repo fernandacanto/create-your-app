@@ -44,7 +44,7 @@ export default {
 	},
 	watch: { 
 		obj(e) {
-			this.emit(e);
+			this.$emit('obj-change', e);
 		}
 	},
 	methods: {
@@ -59,16 +59,13 @@ export default {
 			let reader = new FileReader();
 			reader.onload = (e) => {
 				this.obj.icon = e.target.result;
-				this.emit(this.obj);
+				this.$emit('obj-change', this.obj);
 			};
 			reader.readAsDataURL(file);                     
 		},
 		colorChange(e) {
 			this.obj.color = e;
-			this.emit(this.obj);
-		},
-		emit(e) {
-			this.$emit('obj-change', e)
+			this.$emit('obj-change', this.obj);
 		}
 	}
 }
