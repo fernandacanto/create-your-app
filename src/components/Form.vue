@@ -11,7 +11,7 @@
 		</div>                
 		<div class="form-group">
 			<label for="colorIcon">ICON'S BACKGROUND COLORS</label>
-			<ColorPicker></ColorPicker>            
+			<ColorPicker @color="colorChange"></ColorPicker>    			
 		</div>
 		<div class="form-group">
 			<label for="appCategory">CATEGORY</label>
@@ -29,40 +29,48 @@
 import ColorPicker from '../components/ColorPicker.vue'
 
 export default {
-    name: 'Form',
-    components: {
-        ColorPicker
-    },
-    data: function() {
-        return {
-            categories: [
-                {id: 1, name: "Game"},
-                {id: 2, name: "Store"}
-            ],
-            obj: {}     
-        }
-    },
-    watch: { 
-        obj(e) {
-            this.$emit('obj-change', e)
-        }
-    },
-    methods: {
-        imgSelected(e) {            
-            var files = e.target.files || e.dataTransfer.files;
-            if (!files.length) { 
-                return
-            }            
-            this.createImage(files[0]);            
-        },
-        createImage(file) {
-            var reader = new FileReader();
-            reader.onload = (e) => {
-                this.obj.icon = e.target.result;
-            };
-            reader.readAsDataURL(file);                     
-        }
-    }
+	name: 'Form',
+	components: {
+		ColorPicker
+	},
+	data: function() {
+		return {
+			categories: [
+				{id: 1, name: "Game"},
+				{id: 2, name: "Store"}
+			],
+			obj: {}     
+		}
+	},
+	watch: { 
+		obj(e) {
+			this.emit(e);
+		}
+	},
+	methods: {
+		imgSelected(e) {            
+			let files = e.target.files || e.dataTransfer.files;
+			if (!files.length) { 
+				return
+			}            
+			this.createImage(files[0]);            
+		},
+		createImage(file) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				this.obj.icon = e.target.result;
+				this.emit(this.obj);
+			};
+			reader.readAsDataURL(file);                     
+		},
+		colorChange(e) {
+			this.obj.color = e;
+			this.emit(this.obj);
+		},
+		emit(e) {
+			this.$emit('obj-change', e)
+		}
+	}
 }
 </script>
 

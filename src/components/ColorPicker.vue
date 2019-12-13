@@ -1,8 +1,8 @@
 <template>
   <div class="input-group mb-2 mr-sm-2">
-    <input type="text" class="form-control" id="colorIcon" placeholder="Pick a color" v-model="colorHex">
+    <input type="color" class="form-control" id="colorIcon" placeholder="Pick a color" v-model="colorHex">
     <div class="input-group-prepend">
-      <div class="input-group-text"> #{{colorHex || 'FFFFFF'}} </div>
+      <div class="input-group-text"> {{colorHex}} </div>
     </div>
   </div>
 
@@ -13,8 +13,13 @@ export default {
     name: 'ColorPicker',
     data() {
         return {
-            colorHex: ''
+            colorHex: '#6c757d'
         }
+    },
+    watch: {
+      colorHex(e) {
+        this.$emit("color", e);
+      }
     }
 }
 </script>

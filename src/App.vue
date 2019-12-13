@@ -19,9 +19,5 @@ export default {
 
 <style>
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
-
-body {
-  background: #c6c6c6;
-}
 </style>
 

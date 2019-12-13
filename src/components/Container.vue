@@ -1,14 +1,14 @@
 <template>
 <div class="col col-lg-10 border container-bg">
   <div class="row p-5">
-    <div class="col-lg-7 border-right pl-2 pr-5">
-        <Form @obj-change="objChanged"></Form>
+    <div class="col-lg-7 border-right pl-lg-2 pr-lg-5">
+       <Form @obj-change="objChanged"></Form>
     </div>
-    <div class="col-lg-5 pl-5 mt-5">
-        <Preview :preview="objPreview"></Preview>
-        <div class="row justify-content-md-center">
-          <a href="#" class="btn btn-primary mt-3">SAVE APP</a>
-        </div>
+    <div class="col-lg-5 pl-lg-5 mt-5">
+      <Preview :preview="objPreview"></Preview>
+      <div class="row justify-content-center">
+        <a href="#" class="btn mt-3 btn-secondary" v-on:click="save()">SAVE APP</a>
+      </div>
     </div>
   </div>
 </div>
@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     objChanged(e) {      
-      this.objPreview = e;
+      this.objPreview = e;      
+    }, 
+    save() {      
     }
   }
 }

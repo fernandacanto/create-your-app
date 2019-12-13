@@ -3,7 +3,7 @@
     <p>APP'S CARD REVIEW</p>
 
     <div class="card">    
-      <div class="rectangle">
+      <div class="rectangle" :style="{background: objPreview.color}">
         <div class="circle">
           <img class="card-img-top" :src="objPreview.icon">
         </div>
@@ -16,7 +16,6 @@
             <p class="card-text">
               <span v-if="objPreview.category">{{objPreview.category.name}}</span>
               <span v-else>App Category</span>
-
             </p>            
         </div>        
      </div>     
@@ -47,7 +46,7 @@ export default {
 .rectangle {
   width: 100%;
   text-align: center;
-  background: #c6c6c6;
+  background: #6c757d;
 }
 
 .circle {
