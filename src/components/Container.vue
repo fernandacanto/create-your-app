@@ -33,7 +33,17 @@ export default {
     objChanged(e) {      
       this.objPreview = e;      
     }, 
+    validate() {
+      return !this.objPreview || !this.objPreview.category || !this.objPreview.color || !this.objPreview.name || !this.objPreview.icon;
+    },
     save() {      
+      if (this.validate()) {
+        alert("All fields must be filled!");
+        return;
+      }
+      /* eslint-disable */
+      console.log(this.objPreview);
+      alert("App created correctly!");
     }
   }
 }
