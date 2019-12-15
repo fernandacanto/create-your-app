@@ -19,5 +19,10 @@ export default {
 
 <style>
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
+.form-control-file.is-invalid {
+	border: 1px solid #dc3545;
+	border-radius: 0.25rem;
+}
 </style>
 

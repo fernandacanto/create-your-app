@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "title": "Create new app",
+    "description": "Json responsible for creating a new app.",
+    "properties": {
+      "name": {
+        "type": "string",
+        "value": null,
+        "required": true,
+        "isValid": false
+      },
+      "icon": {
+        "type": "string",
+        "value": null,
+        "required": true,
+        "isValid": false
+      },
+      "color": {
+        "type": "string",
+        "maxLength": 7,
+        "value": null,
+        "required": true,
+        "isValid": false
+      },
+      "category": {
+        "type": "object",
+        "value": null,
+        "required": true,
+        "isValid": false
+      }
+    }    
+  }

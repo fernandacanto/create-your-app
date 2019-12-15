@@ -3,25 +3,36 @@
 		<h1>Create Your App</h1>
 		<div class="form-group">
 			<label for="appName">APP NAME</label>
-			<input type="text" class="form-control" id="appName" placeholder="Enter App display name" v-model="obj.name">
+			<input type="text" class="form-control" id="appName" placeholder="Enter App display name" 
+					v-model="obj.properties.name.value"
+					v-bind:class="{ 'is-invalid': !obj.properties.name.isValid && submitted && !obj.properties.name.value }">
 		</div>        
 		<div class="form-group">
 			<label for="appIcon">APP ICON</label>
-			<input type="file" class="form-control-file" id="appIcon" placeholder="Drag as image here to update" @change="imgSelected">
+			<input type="file" class="form-control-file" id="appIcon" placeholder="Drag as image here to update" 
+					@change="imgSelected" 
+					v-bind:class="{ 'is-invalid': !obj.properties.icon.isValid && submitted && !obj.properties.icon.value }">
 		</div>                
+
 		<div class="form-group">
 			<label for="colorIcon">ICON'S BACKGROUND COLORS</label>
-			<ColorPicker @color="colorChange"></ColorPicker>    			
+			<ColorPicker @color="colorChange" :validation="!obj.properties.color.isValid && submitted && !obj.properties.color.value"></ColorPicker>			
 		</div>
 		<div class="form-group">
 			<label for="appCategory">CATEGORY</label>
-			<select class="custom-select" required id="appCategory" v-model="obj.category">
+			<select class="custom-select" required id="appCategory" 
+					v-model="obj.properties.category.value"
+					v-bind:class="{ 'is-invalid': !obj.properties.category.isValid && submitted && !obj.properties.category.value }">
 				<option disabled>Select a Category</option>
 				<option v-for="option in categories" v-bind:key="option.id" v-bind:value="option">
 					{{option.name}}
 				</option>
-			</select>                  
+			</select>    			
 		</div>          
+
+		<div class="alert alert-danger mt-3" role="alert" v-if="submitted">
+          All fields must be filled. Please check!
+        </div>
 	</form>    
 </template>
 
@@ -33,19 +44,31 @@ export default {
 	components: {
 		ColorPicker
 	},
+	props: {
+		preview: Object,
+		submitted: Boolean
+	},		
 	data: function() {
-		return {
+		return {			
 			categories: [
 				{id: 1, name: "Game"},
 				{id: 2, name: "Store"}
 			],
-			obj: {}     
+			obj: require('@/schema/json-app')
 		}
 	},
 	watch: { 
 		obj(e) {
 			this.$emit('obj-change', e);
-		}
+		},
+		preview(e) {
+			/* eslint-disable */
+			console.log(e);
+			this.obj = e;
+		},
+		submitted(e) {
+			this.submitted = e;
+		}	  	  
 	},
 	methods: {
 		imgSelected(e) {            
@@ -58,13 +81,13 @@ export default {
 		createImage(file) {
 			let reader = new FileReader();
 			reader.onload = (e) => {
-				this.obj.icon = e.target.result;
+				this.obj.properties.icon.value = e.target.result;
 				this.$emit('obj-change', this.obj);
 			};
 			reader.readAsDataURL(file);                     
 		},
 		colorChange(e) {
-			this.obj.color = e;
+			this.obj.properties.color.value = e;
 			this.$emit('obj-change', this.obj);
 		}
 	}

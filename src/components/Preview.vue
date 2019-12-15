@@ -3,18 +3,18 @@
     <p>APP'S CARD REVIEW</p>
 
     <div class="card">    
-      <div class="rectangle" :style="{background: objPreview.color}">
+      <div class="rectangle" :style="{background: objPreview.properties.color.value}">
         <div class="circle">
-          <img class="card-img-top" :src="objPreview.icon">
+          <img class="card-img-top" :src="objPreview.properties.icon.value">
         </div>
       </div>  
         <div class="card-body">
             <h5 class="card-title">
-              <span v-if="objPreview.name">{{objPreview.name}}</span>
+              <span v-if="objPreview.properties.name.value">{{objPreview.properties.name.value}}</span>
               <span v-else>App Name</span>
             </h5>
             <p class="card-text">
-              <span v-if="objPreview.category">{{objPreview.category.name}}</span>
+              <span v-if="objPreview.properties.category.value">{{objPreview.properties.category.value.name}}</span>
               <span v-else>App Category</span>
             </p>            
         </div>        
@@ -31,7 +31,7 @@ export default {
     },
     data() {
       return {
-        objPreview: {}
+        objPreview: require('@/schema/json-app')
       }
     },
     watch: {
@@ -64,6 +64,5 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-
 }
 </style>
