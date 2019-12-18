@@ -19,6 +19,11 @@ export default {
 
 <style>
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
 
 .form-control-file.is-invalid {
 	border: 1px solid #dc3545;
