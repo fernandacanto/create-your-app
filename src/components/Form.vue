@@ -31,8 +31,8 @@
 		</div>          
 
 		<div class="alert alert-danger mt-3" role="alert" v-if="submitted">
-          All fields must be filled. Please check!
-        </div>
+      All fields must be filled. Please check!
+    </div>
 	</form>    
 </template>
 

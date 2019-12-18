@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container"> 
-    <div class="row justify-content-md-center mt-5">
+    <div class="row justify-content-md-center mt-lg-5">
       <Container></Container>
     </div>      
   </div>
