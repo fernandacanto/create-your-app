@@ -9,7 +9,7 @@
 		</div>        
 		<div class="form-group">
 			<label for="appIcon">APP ICON</label>
-			<input type="file" class="form-control-file" id="appIcon" placeholder="Drag as image here to update" 
+			<input type="file" class="form-control-file" id="appIcon" placeholder="Drag as image here to update" accept="image/*" 
 					@change="imgSelected" 
 					v-bind:class="{ 'is-invalid': !obj.properties.icon.isValid && submitted && !obj.properties.icon.value }">
 		</div>                
@@ -62,8 +62,6 @@ export default {
 			this.$emit('obj-change', e);
 		},
 		preview(e) {
-			/* eslint-disable */
-			console.log(e);
 			this.obj = e;
 		},
 		submitted(e) {

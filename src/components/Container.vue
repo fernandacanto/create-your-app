@@ -1,6 +1,6 @@
 <template>
 <div class="col col-lg-10 border container-bg">  
-  <div class="row p-5">
+  <div class="row p-5" v-if="visibleForm">
     <div class="col-lg-7 border-right remove-border-form pl-lg-2 pr-lg-5">
        <Form @obj-change="objChanged" :preview="objPreview" :submitted="submitted"></Form>
     </div>
@@ -8,10 +8,17 @@
       <Preview :preview="objPreview"></Preview>
       
       <div class="row justify-content-center no-gutters">
-        <a href="#" class="btn mt-3 btn-secondary my-btn-block" v-on:click="submit()">SAVE APP</a>
+        <a href="#" class="btn mt-3 btn-primary my-btn-block" v-on:click="submit()">SAVE APP</a>
       </div>
     </div>
   </div>  
+
+  <div class="col-12 p-5" v-if="!visibleForm">
+    <h1>Thank you,</h1>
+    <p>For creating your App with us. Success!</p>
+    <a href="#" class="btn mt-3 btn-primary my-btn-block" v-on:click="back()">Come back and create another App</a>      
+  </div>
+
 </div>
 </template>
 
@@ -28,7 +35,8 @@ export default {
   data: function() {
     return {
       objPreview: require('@/schema/json-app'),
-      submitted: false
+      submitted: false,
+      visibleForm: true
     }    
   },
   methods: {
@@ -57,12 +65,13 @@ export default {
       if (this.validate()) {        
         return;
       }
+      this.visibleForm = false;
       /* eslint-disable */
-      console.log(this.objPreview);      
-      alert("App created correctly!");
-      // this.submitted = false;
-      // this.objPreview = {};
-      // this.objChanged = {};
+      console.log(this.objPreview);            
+    },
+    back() {
+      this.submitted = false;
+      this.visibleForm = true;
     }
   }
 }
@@ -83,5 +92,4 @@ export default {
     width: 100%;
   }
 }
-
 </style>
